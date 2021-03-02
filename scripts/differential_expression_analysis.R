@@ -388,12 +388,12 @@ spline8_48genes <- intersect_top_genes_short_window
 total_splines_411genes <- union_of_intersections_limmavoom
 total_DEGs_951genes <- length(union(DE.729,SUBSET_551))
 
-save(spline48_380genes,file="../data/spline_48h_pval0.05_380genes.rdata")
-save(spline8_48genes,file="../data/spline_8h_pval0.05_48genes.rdata")
-save(total_splines_411genes,file="../data/both_splines_pval0.05_411genes.rdata")
-save(DE.214, file="../data/pairwiseDE_pval0.05_logFC2_1tp_214genes.rdata")
-save(DE.729, file="../data/pairwiseDE_pval0.05_logFC1_1tp_729genes.rdata")
-save(core_91, file="../data/pairwiseDE_pval0.01_logFC2_2tp_91genes.rdata")
-save(total_DEGs_951genes, file="../data/all_DEGs_951genes.rdata")
+save(spline48_380genes,file="../data/gene_lists/spline_48h_pval0.05_380genes.rdata")
+save(spline8_48genes,file="../data/gene_lists/spline_8h_pval0.05_48genes.rdata")
+save(total_splines_411genes,file="../data/gene_lists/both_splines_pval0.05_411genes.rdata")
+save(DE.214, file="../data/gene_lists/pairwiseDE_pval0.05_logFC2_1tp_214genes.rdata")
+save(DE.729, file="../data/gene_lists/pairwiseDE_pval0.05_logFC1_1tp_729genes.rdata")
+save(core_91, file="../data/gene_lists/pairwiseDE_pval0.01_logFC2_2tp_91genes.rdata")
+save(total_DEGs_951genes, file="../data/gene_lists/all_DEGs_951genes.rdata")
 
 
