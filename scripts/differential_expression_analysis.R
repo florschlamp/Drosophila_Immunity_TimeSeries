@@ -227,6 +227,14 @@ nrow(top_genes_short_A)
 # 1163 genes at 0.05 
 # note: some versions give 1164 genes, but it doesn't change the downstream overlap
 
+# save results
+file_name <- "../results/top_genes_limma-voom_short.filtered_A_spline_3_TMM_0.05.csv"
+write.csv(top_genes_short_A,file=file_name)
+
+smooth_short_A <- as.data.frame(results_short_A['dat_smoothed'])
+nrow(smooth_short_A)
+file_name <- "../results/top_genes_limma-voom_short.filtered_A_spline_3_TMM_ALL_SMOOTHED.csv"
+write.csv(smooth_short_A,file=file_name)
 
 #window analysis (first 8 hours)
 dat_short_A_subset <- dat_short_A[1:7]
@@ -239,6 +247,15 @@ top_genes_short_A_window <- as.data.frame(results_short_A_window['top'])
 nrow(top_genes_short_A_window)
 # 129 (1to7) at 0.05
 
+# save results
+file_name <- "../results/top_genes_limma-voom_short.filtered_A_spline_3_TMM_0.05_1to7.csv"
+write.csv(top_genes_short_A_window,file=file_name)
+
+smooth_short_A_window <- as.data.frame(results_short_A_window['dat_smoothed'])
+nrow(smooth_short_A_window)
+file_name <- "../results/top_genes_limma-voom_short.filtered_A_spline_3_TMM_1to7_ALL_SMOOTHED.csv"
+write.csv(smooth_short_A_window,file=file_name)
+
 
 # ============== replicate B =============
 #window analysis (first 48 hours)
@@ -248,6 +265,15 @@ results_short_B <- LRT_limmavoom(dat_short_B,time_ID_short_B,
 top_genes_short_B <- as.data.frame(results_short_B['top'])
 nrow(top_genes_short_B)
 # 845 at 0.05 
+
+# save results
+file_name <- "../results/top_genes_limma-voom_short.filtered_B_spline_3_TMM_0.05.csv"
+write.csv(top_genes_short_B,file=file_name)
+
+smooth_short_B <- as.data.frame(results_short_B['dat_smoothed'])
+nrow(smooth_short_B)
+file_name <- "../results/top_genes_limma-voom_short.filtered_B_spline_3_TMM_ALL_SMOOTHED.csv"
+write.csv(smooth_short_B,file=file_name)
 
 #windows analysis (first 8 hours)
 dat_short_B_subset <- dat_short_B[1:7]
@@ -260,6 +286,14 @@ top_genes_short_B_window <- as.data.frame(results_short_B_window['top'])
 nrow(top_genes_short_B_window)
 # 145 (1to7) at 0.05
 
+# save results
+file_name <- "../results/top_genes_limma-voom_short.filtered_B_spline_3_TMM_0.05_1to7.csv"
+write.csv(top_genes_short_B_window,file=file_name)
+
+smooth_short_B_window <- as.data.frame(results_short_B_window['dat_smoothed'])
+nrow(smooth_short_B_window)
+file_name <- "../results/top_genes_limma-voom_short.filtered_B_spline_3_TMM_1to7_ALL_SMOOTHED.csv"
+write.csv(smooth_short_B_window,file=file_name)
 
 #### SUMMARY
 ##### what is the overlap between spline modeling results for repA and repB #####
@@ -307,6 +341,15 @@ out_short = DE_timecourse(dat_short_A,
 p_values_short <- as.data.frame(out_short['pvalue'])
 log_fold_change_short <- as.data.frame(out_short['logFoldChange'])
 
+## save full tables
+file_name = paste("../results/adj.pvalues_short.filtered_ALL_spline_3.csv",sep="")
+write.csv(p_values_short,file=file_name)
+
+file_name = paste("../results/log_fold_change_short.filtered_ALL_spline_3.csv",sep="")
+write.csv(log_fold_change_short,file=file_name)
+
+
+
 # filter results (p-value 0.05, logFC=2, tp=1, total 214 genes)
 desired_p_value_cutoff = 0.05 
 desired_logFC_cutoff = 2
@@ -326,6 +369,18 @@ nrow(adj.p_values_short_f)
 nrow(log_fold_change_short_f) # 214 genes
 
 DE.214 <- rownames(log_fold_change_short_f)
+
+file_name = paste("../results/adj.pvalues_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(adj.p_values_short_f,file=file_name)
+
+file_name = paste("../results/log_fold_change_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(log_fold_change_short_f,file=file_name)
 
 
 ### FINAL SUBSET ######
@@ -358,6 +413,18 @@ nrow(log_fold_change_short_f) # 91
 
 core_91 <- rownames(log_fold_change_short_f)
 
+file_name = paste("../results/adj.pvalues_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(adj.p_values_short_f,file=file_name)
+
+file_name = paste("../results/log_fold_change_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(log_fold_change_short_f,file=file_name)
+
 
 # filter results to 729 (pval 0.05, logFC 1)
 desired_p_value_cutoff = 0.05 
@@ -380,6 +447,19 @@ nrow(log_fold_change_short_f)
 
 DE.729 <- rownames(log_fold_change_short_f)
 
+file_name = paste("../results/adj.pvalues_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(adj.p_values_short_f,file=file_name)
+
+file_name = paste("../results/log_fold_change_short.filtered_pvalue-cut_",desired_p_value_cutoff,
+                  "_logFC-cut_",desired_logFC_cutoff,
+                  "_tp-cut_",desired_number_of_timepoints,
+                  "_",design_type[1],"_",design_type[2],".csv",sep="")
+write.csv(log_fold_change_short_f,file=file_name)
+
+
 
 ## save all gene list subsets
 # give more descriptive names to some subsets
@@ -388,12 +468,12 @@ spline8_48genes <- intersect_top_genes_short_window
 total_splines_411genes <- union_of_intersections_limmavoom
 total_DEGs_951genes <- length(union(DE.729,SUBSET_551))
 
-save(spline48_380genes,file="../data/gene_lists/spline_48h_pval0.05_380genes.rdata")
-save(spline8_48genes,file="../data/gene_lists/spline_8h_pval0.05_48genes.rdata")
-save(total_splines_411genes,file="../data/gene_lists/both_splines_pval0.05_411genes.rdata")
-save(DE.214, file="../data/gene_lists/pairwiseDE_pval0.05_logFC2_1tp_214genes.rdata")
-save(DE.729, file="../data/gene_lists/pairwiseDE_pval0.05_logFC1_1tp_729genes.rdata")
-save(core_91, file="../data/gene_lists/pairwiseDE_pval0.01_logFC2_2tp_91genes.rdata")
-save(total_DEGs_951genes, file="../data/gene_lists/all_DEGs_951genes.rdata")
+save(spline48_380genes,file="../results/gene_lists/spline_48h_pval0.05_380genes.rdata")
+save(spline8_48genes,file="../results/gene_lists/spline_8h_pval0.05_48genes.rdata")
+save(total_splines_411genes,file="../results/gene_lists/both_splines_pval0.05_411genes.rdata")
+save(DE.214, file="../results/gene_lists/pairwiseDE_pval0.05_logFC2_1tp_214genes.rdata")
+save(DE.729, file="../results/gene_lists/pairwiseDE_pval0.05_logFC1_1tp_729genes.rdata")
+save(core_91, file="../results/gene_lists/pairwiseDE_pval0.01_logFC2_2tp_91genes.rdata")
+save(total_DEGs_951genes, file="../results/gene_lists/all_DEGs_951genes.rdata")
 
 
