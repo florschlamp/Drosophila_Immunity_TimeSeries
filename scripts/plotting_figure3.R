@@ -1,5 +1,5 @@
 # Scripts to generate plots in Figure 3
-# last updated: March 4th, 2021
+# last updated: March 16th, 2021
 # Florencia Schlamp
 # mfs97@cornell.edu
 
