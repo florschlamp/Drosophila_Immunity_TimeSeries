@@ -50,9 +50,10 @@ dev.off()
 
 
 
-# Figure 4B) plot genes up and down and immune bar plot
+# Figure 3B) plot genes up and down and immune bar plot
 
 library(reshape2)
+library(ggplot2)
 
 log_fold_change_short_f <- read.csv("../results/log_fold_change_short.filtered_pvalue-cut_0.01_logFC-cut_2_tp-cut_2_spline_3.csv", row.names = 1)
 nrow(log_fold_change_short_f)
