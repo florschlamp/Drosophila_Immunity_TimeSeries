@@ -1,8 +1,9 @@
 # Scripts to generate plots in Figure 2
-# last updated: March 4th, 2021
+# last updated: March 19th, 2021
 # Florencia Schlamp
 # mfs97@cornell.edu
 
+library(reshape2)
 library(ggplot2)
 
 # Figure 2B and 2C) Plot smoothing vs normalized counts
